@@ -78,8 +78,7 @@ namespace VBASync.Model
 
         public void ReplaceFormControls(string name, VbaFolder source)
         {
-            _so.FileCopy(FindFrxPath(source.FindModulePath(name, ModuleType.Form)),
-                FindFrxPath(FindModulePath(name, ModuleType.Form)), true);
+            _so.FileCopy(source.FindFrxPath(name), FindFrxPath(name), true);
         }
 
         public void ReplaceTextModule(string name, ModuleType type, VbaFolder source, string fallbackText)
@@ -130,7 +129,7 @@ namespace VBASync.Model
         }
 
         protected string FindModulePath(string name, ModuleType type)
-            => ModuleFilePaths.Find(s => string.Equals(_so.PathGetFileName(s), name + ModuleProcessing.ExtensionFromType(type),
+            => ModuleFilePaths.Find(s => string.Equals(_so.PathGetFileName(s), _so.PathGetFileName(name + ModuleProcessing.ExtensionFromType(type)),
                 StringComparison.OrdinalIgnoreCase));
 
         protected virtual List<string> GetModuleFilePaths() => GetModuleFilePaths(false);
