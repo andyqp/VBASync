@@ -129,7 +129,7 @@ namespace VBASync.Model
         }
 
         protected string FindModulePath(string name, ModuleType type)
-            => ModuleFilePaths.Find(s => string.Equals(_so.PathGetFileName(s), _so.PathGetFileName(name + ModuleProcessing.ExtensionFromType(type)),
+            => ModuleFilePaths.Find(s => string.Equals(_so.PathGetFileName(s), name + ModuleProcessing.ExtensionFromType(type),
                 StringComparison.OrdinalIgnoreCase));
 
         protected virtual List<string> GetModuleFilePaths() => GetModuleFilePaths(false);
